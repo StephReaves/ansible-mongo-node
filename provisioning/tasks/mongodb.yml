@@ -1,11 +1,27 @@
+---
+- name: check if mongo already installed
+  stat: path=/usr/bin/mongo
+  register: mongo_bin
+
 - name: Fetch 10Gen / MongoDB signing key
   apt_key: keyserver=hkp://keyserver.ubuntu.com:80 id=7F0CEB10
+  when: mongo_bin.stat.exists == False
 
 - name: Add Mongo repository
   template: src=mongodb.list dest=/etc/apt/sources.list.d/mongodb.list
+  when: mongo_bin.stat.exists == False
 
 - name: Install latest MongoDB release
-  apt: pkg=mongodb-org update_cache=yes
+  apt: pkg=mongodb-org state=latest update_cache=yes
+  when: mongo_bin.stat.exists == False
+
+- name: MongoDB - stop server
+  service: name=mongod state=stopped
+  when: mongo_bin.stat.exists == False
+
+- name: mongodb / create db directory
+  file: dest=/data/db state=directory owner=mongodb group=mongodb mode=0755
+  when: mongo_bin.stat.exists == False
 
 - name: Ensure MongoDB is running
   service: name=mongod state=started
