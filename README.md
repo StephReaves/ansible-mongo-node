@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Ansible playbook - MEAN stack
 
 This Vagrant and Virtualbox based Ansible playbook sets up a MEAN stack (Mongodb, Node + Express suitable for back-end for Angular SPAs).
@@ -50,3 +51,6 @@ $ sudo pip install ansible
   * [Ansible for DevOps Examples on GitHub](https://github.com/geerlingguy/ansible-for-devops)
 * [Vagrant & Ansible Quickstart Tutorial](http://adamcod.es/2014/09/23/vagrant-ansible-quickstart-tutorial.html)
 * [Ansible playbook - MEAN stack](https://github.com/dennmart/vagrant-ansible-playbooks/tree/master/mean)
+=======
+# ansible-mongo-node
+>>>>>>> d2296c4cb63e34d1b920ac428b7b45ef05fc4e8e
